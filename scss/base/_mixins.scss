@@ -1,0 +1,46 @@
+@mixin v-align($va-height: 100%, $va-direction: middle, $va-pseudo: after) {
+	white-space: nowrap;
+	text-align: center;
+
+	&:#{$va-pseudo} {
+		content: '';
+		display: inline-block;
+		vertical-align: $va-direction;
+		width: 0;
+		min-height: $va-height;
+	}
+
+	> * {
+		white-space: normal;
+		display: inline-block;
+		vertical-align: $va-direction;
+		max-width: 99%;
+	}
+}
+
+@mixin size($width, $height: $width) {
+	width: $width;
+	height: $height;
+}
+
+
+/// Animate css properties
+// usage
+// scss - @include animate(color);
+//     or @include animate(color width);
+//     or @include animate(color width, 1s, linear);
+//
+$animation-speed: .3s !default;
+
+@mixin animate($properties, $duration: $animation-speed, $easing: ease-in-out) {
+	$list:();
+	@each $prop in $properties {
+		$str: #{$prop} #{$duration} #{$easing};
+		$list: join($list, #{$str}, comma);
+	}
+	transition: $list;
+}
+
+@mixin to-rem($px, $base-value: $rem-base) {
+
+}

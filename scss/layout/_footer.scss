@@ -1,0 +1,18 @@
+#footer {
+	background-color: $gray;
+	color: $white;
+	font-size: 13px;
+	padding: 20px 0;
+
+	@media (min-width: $desktop) {
+		padding: 49px 0 32px;
+	}
+
+	a {
+		color: inherit;
+
+		&:hover {
+			color: $light-blue;
+		}
+	}
+}

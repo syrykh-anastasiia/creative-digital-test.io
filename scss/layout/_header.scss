@@ -1,0 +1,215 @@
+#header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	border-bottom: 1px solid rgba(#e7e7e7, .38);
+	z-index: 5;
+	padding: 10px 0;
+
+	@media (min-width: $desktop) {
+		padding: 0;
+	}
+
+	.container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+
+.logo-holder {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	@media (min-width: $desktop) {
+		width: auto;
+		display: block;
+	}
+}
+
+.logo {
+	display: block;
+	width: 50px;
+
+	@media (min-width: $desktop) {
+		width: 79px;
+	}
+}
+
+#nav {
+	display: flex;
+	align-items: center;
+
+	@media (max-width: $desktop - 1) {
+		@include animate(opacity visibility);
+
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 100vh;
+		opacity: 0;
+		visibility: hidden;
+		z-index: 2;
+		background-color: rgba($gray, .95);
+		display: block;
+		padding: 3.5rem 1rem 4rem;
+		overflow-y: auto;
+		overflow-x: hidden;
+		text-align: center;
+	}
+
+	.nav-active & {
+		@media (max-width: $desktop - 1) {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+}
+
+.main-nav {
+	@extend %listreset;
+
+	margin-bottom: 15px;
+	font: 18px $open-sans;
+
+	@media (min-width: $desktop) {
+		margin-bottom: 0;
+	}
+
+	li {
+		padding: 0 0 15px;
+
+		@media (min-width: $desktop) {
+			display: inline-block;
+			vertical-align: middle;
+			padding: 51px 21px 0;
+		}
+
+		&.active {
+			a {
+				&:before {
+					@media (min-width: $desktop) {
+						height: 6px;
+					}
+				}
+			}
+		}
+	}
+
+	a {
+		position: relative;
+		display: block;
+		color: $white;
+
+		@media (min-width: $desktop) {
+			padding: 0 0 40px;
+		}
+
+		&:before {
+			@media (min-width: $desktop) {
+				@include animate(height);
+
+				content: '';
+				position: absolute;
+				bottom: 0;
+				height: 0;
+				background-color: $light-blue;
+				left: -15px;
+				right: -10px;
+			}
+		}
+
+		&:hover {
+			&:before {
+				@media (min-width: $desktop) {
+					height: 6px;
+				}
+			}
+		}
+	}
+}
+
+.social-menu {
+	@extend %listreset;
+
+	font-size: 20px;
+
+	@media (min-width: $desktop) {
+		margin-right: -15px;
+		margin-left: 24px;
+		padding-top: 14px;
+	}
+
+	li {
+		display: inline-block;
+		vertical-align: middle;
+		padding: 0 5px;
+
+		@media (min-width: $desktop) {
+			padding: 0 10px;
+		}
+	}
+
+	a {
+		color: $white;
+
+		&:hover {
+			color: $light-blue;
+		}
+	}
+}
+
+.nav-opener {
+	display: none;
+
+	@media (max-width: $desktop - 1) {
+		@include size(20px);
+
+		display: block;
+		position: relative;
+		text-indent: -9999px;
+		z-index: 3;
+	}
+
+	span,
+	&:before,
+	&:after {
+		@include animate(all);
+
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		background-color: $white;
+		height: 2px;
+	}
+
+	span {
+		top: 6px;
+	}
+
+	&:after {
+		top: 12px;
+	}
+
+	.nav-active & {
+		span {
+			opacity: 0;
+		}
+
+		&:before {
+			top: 6px;
+			transform: rotate(45deg);
+		}
+
+		&:after {
+			top: 6px;
+			transform: rotate(-45deg);
+		}
+	}
+}
